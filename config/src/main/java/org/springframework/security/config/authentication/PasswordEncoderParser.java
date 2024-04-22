@@ -69,12 +69,12 @@ public class PasswordEncoderParser {
 			this.passwordEncoder = new RuntimeBeanReference(ref);
 		}
 		else {
-			this.passwordEncoder = createPasswordEncoderBeanDefinition(hash, useBase64);
+			this.passwordEncoder = createPasswordEncoderBeanDefinition(hash);
 			((RootBeanDefinition) this.passwordEncoder).setSource(parserContext.extractSource(element));
 		}
 	}
 
-	public static BeanDefinition createPasswordEncoderBeanDefinition(String hash, boolean useBase64) {
+	public static BeanDefinition createPasswordEncoderBeanDefinition(String hash) {
 		Class<?> beanClass = ENCODER_CLASSES.get(hash);
 		BeanDefinitionBuilder beanBldr = BeanDefinitionBuilder.rootBeanDefinition(beanClass);
 		return beanBldr.getBeanDefinition();
